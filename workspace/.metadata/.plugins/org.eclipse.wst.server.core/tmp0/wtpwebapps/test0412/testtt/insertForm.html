@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            test
+        </title>
+         <script>
+            function check1(){
+		        if(document.form.id.value==""){
+			        alert('사원번호를 입력하세요');
+			        document.form.id.focus();
+                }
+                if(document.form.name.value==""){
+                    alert('성명을 입력하세요');
+			        document.form.name.focus();
+                }
+               if(document.form.dept.value==""){
+                    alert('소속부서 선택하세요');
+			        document.form.dept.focus();
+                }
+	        } 
+        </script>
+        <style>
+        	hm{
+        	font-size: 2em;
+        	
+        	}
+        
+            header{
+                width:100%;
+                height:15%;
+                background-color: burlywood;
+            }
+            nav{
+                width:100%;
+                height:5%;
+                background-color:red;
+                padding-top:20px;
+            }
+
+            section{
+                width:100%;
+                height: 75%;
+                background-color: lemonchiffon;
+                float:left;
+            }
+            footer{
+                width:100%;
+                height: 5%;
+                background-color: deeppink;
+                clear:both;
+            }
+            html,body{
+                width:100%;
+                height:100%;
+            }
+            *{
+                padding:0%;
+                margin:0%;
+            }
+            ul{
+                list-style:none;
+                text-align:center;
+            }
+            ul li{
+                display:inline;
+                padding:30px;
+                margin-top:20px;
+                letter-spacing: 10px;
+            }
+            ul li a{
+                text-decoration: none;
+                color:black;
+            }
+ 
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 align="center">서버프로그램 수행 평가 (인사관리)</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="hwangheemoon.html">조회</a></li>
+                <li><a href="insertForm.html">사원등록</a></li>
+                <li><a href="hwang_hugi.html">정보변경</a></li>
+                <li><a href="hwang_add.html">퇴사처리</a></li>
+                <li><a href="hwang_add.html">종료</a></li>
+                <li><a href="hwang_add.html">홈으로</a></li>
+            </ul>
+        </nav>
+        <section>
+        <hm>인사관리 사원등록 화면</hm><br>
+        <form name="form" method="post" action="insertProcess.jsp">
+        <table border="1"style="TABLE-LAYOUT: fixed"> <!---->
+            <style>
+                table{
+                    width: 500px;
+                }
+                td{
+                    /*text-align: center;*/
+                    padding:0;
+                }
+            </style>
+            <tr>
+                <td bgcolor="grey">사원번호</td>
+                <td colspan="4">
+                    <input type="text" name="id">
+                </td>
+
+            </tr>
+            <tr>
+                <td bgcolor="grey">성명</td>
+                <td colspan="4"><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td bgcolor="grey">소속부서</td>
+                <td colspan="4">
+                <select name="dept" default="">
+                <option>인사부</option>
+                <option>기획부</option>
+                <option>홍보부</option>
+                <option>영업부</option>
+                <option>경리부</option>
+                <option selected></option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="grey" >직급</td>
+                <td colspan="4">
+				<select name="position">
+                <option>1급</option>
+                <option>2급</option>
+                <option>3급</option>
+                <option>4급</option>
+                </select>
+				</td>
+            </tr>
+            <tr>
+                <td bgcolor="grey">직책</td>
+                <td colspan="4"><input type="text" name="duty"></td>
+            </tr>
+            <tr>
+                <td bgcolor="grey">연락처</td>
+                <td colspan="4">
+                <input type="text" name="phone">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                <input type="submit" value="등록" onclick="javascript:check1()">
+                <input type="button" value="취소" onclick="location.href='index.html'">
+                </td>
+               
+            </tr>
+        </table>
+    </form>
+        </section>
+        <footer>
+            HRDKOEA Copyright~
+        </footer>
+    </body>
+</html>

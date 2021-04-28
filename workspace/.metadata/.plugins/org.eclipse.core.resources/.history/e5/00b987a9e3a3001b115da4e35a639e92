@@ -1,0 +1,28 @@
+package function;
+
+public class function {
+	static int plus(int a, int b) {
+		int result;
+		result=a+b;
+		return result;
+	}
+	static int minus(int a, int b) {
+		int result;
+		result=a+b;
+		return result;
+	}
+	static int times(int a, int b) {
+		int result;
+		result=a+b;
+		return result;
+	}
+	static int divide(int a, int b) {
+		int result;
+		result=a+b;
+		return result;
+	}
+	public static void main(String[] args) {
+		int hap=plus(100,200);
+		System.out.printf("두수의 합은 %d\n", hap);
+	}
+}

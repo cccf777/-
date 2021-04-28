@@ -1,0 +1,317 @@
+<%-- <%@page import="java.sql.PreparedStatement"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<%@ include file="header.jsp" %>
+<%@ include file="nav.jsp" %>
+<section>
+<h2>교과목 목록 </h2>
+<%@ include file="DBconnOracle.jsp" %>
+<%
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	int cnt=0;
+	String sql;
+	try{
+		sql="select count(*) from sub0422";
+		pstmt=conn.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		if(rs.next()){
+			cnt=rs.getInt(1);
+		}else{
+			cnt=0;
+		}
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
+
+%>
+<p id="t1"><%=cnt %>개의 교과목이 있음</p>
+<table id="table1" border="1">
+<tr>
+	<th width=15px>과목코드</th>
+	<th width=20px>과목명</th>
+	<th width=30px>학점</th>
+	<th width=20px>담당강사</th>
+	<th width=15px>요일</th>
+	<th width=15px>시작시간</th>
+	<th width=15px>종료시간</th>
+	<th width=15px>관리</th>
+</tr>
+
+<%
+	//PreparedStatement pstmt=null;
+	//ResultSet rs=null;//데이터를 읽을것이기 때문에 쓴다
+	//a.id,a.subject_name,a.credit,b.name,a.week,a.start_hour,a.end_hour
+	try{
+		sql="select a.id,a.subject_name,a.credit,b.name,a.week,a.start_hour,a.end_hour from sub0422 a,teach0422 b where a.lecturer = b.idx order by a.id asc";
+		pstmt=conn.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		String id,subject_name,name,lecturer_name;
+		int credit,week,start_hour,end_hour,lecturer;
+		while(rs.next()){
+			id=rs.getString("id");
+			subject_name=rs.getString("subject_name");
+			credit=rs.getInt("credit");
+			lecturer_name=rs.getString("name");
+			week=rs.getInt("week");
+			start_hour=rs.getInt("start_hour");
+			end_hour=rs.getInt("end_hour");
+		/* 	if(lecturer=="1"){
+				lecturername="김교수";
+			}else if(lecturer=="2"){
+				lecturername="이교수";
+			}else if(lecturer=="3"){
+				lecturername="박교수";
+			}else if(lecturer=="4"){
+				lecturername="우교수";
+			}else if(lecturer=="5"){
+				lecturername="최교수";
+			}else if(lecturer=="6"){
+				lecturername="강교수";
+			}else lecturername="황교수"; */
+%>
+<tr>
+	<td><%=id %></td>
+	<td><%=subject_name %></td>
+	<td><%=credit %></td>
+	<td><%=lecturer_name %></td>
+	<td><%=week %></td>
+	<td><%=start_hour %></td>
+	<td><%=end_hour %></td>
+	<td>수정/삭제</td>
+</tr>
+<%
+		}
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
+%>
+</table>
+</section>
+<%@ include file="footer.jsp" %>
+</body>
+</html> --%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+
+pageEncoding="UTF-8"%>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>교과목 목록</title>
+
+<link rel="stylesheet" href="common1.css">
+
+</head>
+
+<body>
+
+<div id=wrap>
+
+<header>
+
+<%@ include file="header.jsp" %>
+
+</header>
+
+<nav>
+
+<%@ include file="nav.jsp" %>
+
+</nav>
+
+<section>
+
+<!-- 내용 시작 -->
+
+<%@ include file="DBconnOracle.jsp" %>
+
+<%
+
+ResultSet rs = null;
+
+PreparedStatement pstmt = null;
+
+int cnt = 0;
+
+​
+
+try {
+
+String sql = "select count(*) from sub0422";
+
+pstmt = conn.prepareStatement(sql);
+
+rs = pstmt.executeQuery();
+
+if (rs.next()) {
+
+cnt = rs.getInt(1);
+
+}
+
+}catch(SQLException e){
+
+System.out.println("cnt2 : "+cnt);
+
+out.println("SQLException : "+e.getMessage());
+
+e.printStackTrace();
+
+}
+
+%>
+
+<h2>교과목 목록</h2>
+
+<p id=t1>총 <%= cnt %>개의 교과목이 있습니다.</p>
+
+<hr>
+
+<table id="table1">
+
+<colgroup>
+
+<col width="10%">
+
+<col width="30%">
+
+<col width="10%">
+
+<col width="10%">
+
+<col width="8%">
+
+<col width="8%">
+
+<col width="8%">
+
+<col width="16%">
+
+</colgroup>
+
+<thead>
+
+<tr>
+
+<th>과목코드</th>
+
+<th>과목명</th>
+
+<th>학점</th>
+
+<th>담당강사</th>
+
+<th>요일</th>
+
+<th>시작시간</th>
+
+<th>종료시간</th>
+
+<th>관리</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<%
+
+/* 회원정보 list 가져오기 */
+
+String sql = "SELECT a.id,a.subject_name,a.credit,b.name,a.week,a.start_hour,a.end_hour from sub0422 a,teach0422 b where a.lecturer=b.idx order by a.id asc";
+pstmt = conn.prepareStatement(sql);
+
+rs = pstmt.executeQuery();
+
+String id, name, credit, lecturer_name, week, start_hour, end_end;
+
+while (rs.next()) {
+
+id = rs.getString(1);
+
+name = rs.getString(2);
+
+credit = rs.getString(3);
+
+lecturer_name = rs.getString(4);
+
+week = rs.getString(5);
+
+start_hour = rs.getString(6);
+
+end_end = rs.getString(7);
+
+%>
+
+<tr style="text-align:center;">
+
+<td><%= id %></td>
+
+<td><%= name %></td>
+
+<td><%= credit %></td>
+
+<td><%= lecturer_name %></td>
+
+<td><%= week %></td>
+
+<td><%= start_hour %></td>
+
+<td><%= end_end %></td>
+
+<td>
+
+<a href="./subjectUpdate.jsp?id=<%= id %>">수정</a> /
+
+<a href="./subjectDelete.jsp?id=<%= id %>" onclick="if(!confirm('정말로 삭제하시겠습니까?')) return false;">삭제</a>
+
+</td>
+
+</tr>
+
+<%
+
+}
+
+%>
+
+</tbody>
+
+</table>
+
+<div class="btn_group right">
+
+<button type="button" onclick="location.href = './write.jsp'">작성</button>
+
+</div>
+
+</section>
+
+<footer>
+
+<%@ include file="footer.jsp" %>
+
+</footer>
+
+</div>
+
+</body>
+
+</html>
+
+
+

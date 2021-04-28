@@ -1,0 +1,12 @@
+package file;
+
+import java.util.Scanner;
+
+public class ScannerTest {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner("data2.txt");
+	}
+
+}

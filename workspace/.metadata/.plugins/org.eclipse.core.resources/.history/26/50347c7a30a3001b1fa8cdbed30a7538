@@ -1,0 +1,82 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+function check(){
+	if(document.form.studno.value==""){
+		alert("학번이 입력되지 않음");
+		document.form.studno.focus();
+	}else if(document.form.name.value==""){
+		alert("이름이 입력되지 않음");
+		document.form.name.focus();
+	}else{
+		document.form.submit();
+	}
+}
+
+</script>
+</head>
+<body>
+
+<%@ include file="header.jsp" %>
+<%@ include file="nav.jsp" %>
+<section>
+<form name="form" method="post" action="hakInsertProcess.jsp">
+<table border="1" id="table1">
+	<tr>
+		<th width="30%">교과목코드</th>
+		<td><input type="text" name="id" id="in1" <%-- value="<%=no %>" --%>></td>
+	</tr>
+	<tr>
+		<th width="30%">과목명</th>
+		<td><input type="text" name="subject_name" id="in1"></td>
+	</tr>
+	<tr>
+		<th width="30%">학점</th>
+		<td>
+		<select name="credit" id="in1">
+		<option value="1" selected>컴퓨터공학과</option>
+		<option value="2">경영학과</option>
+		<option value="3">경제학과</option>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<th width="30%">담당강사</th>
+		<td>
+		<select name="lecturer" id="in1">
+		<option value="1" selected>1학년</option>
+		<option value="2">2학년</option>
+		<option value="3">3학년</option>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<th width="30%">요일</th>
+		<td><input type="text" name="week"  id="in1"></td>
+	</tr>
+	<tr>
+		<th width="30%">시작</th>
+		<td><input type="text" name="start_hour"  id="in1"></td>
+	</tr>
+	<tr>
+		<th width="30%">종료</th>
+		<td><input type="text" name="end_hour"  id="in1"></td>
+	</tr>
+	<tr>
+		<td colspan=2 class="center">
+		<input type="button" value="등록" onclick="javascript:check()">
+		<input type="reset" value="취소">
+		</td>
+	</tr>
+</table>
+</form>
+<input type="button" value="학사정보추가" >
+</section>
+<%@ include file="footer.jsp" %>
+</body>
+</html>

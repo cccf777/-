@@ -1,0 +1,17 @@
+package error;
+
+public class errortest {
+	public static void main(String[] args) {
+		int[]aa=new int[3];
+		try {
+		aa[3]=44;
+		
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("첨자가 크다");
+		
+		}finally {
+			System.out.print("출력잘데제?");
+		}
+		
+	}
+}

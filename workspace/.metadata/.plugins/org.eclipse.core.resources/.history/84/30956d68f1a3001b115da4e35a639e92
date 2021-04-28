@@ -1,0 +1,11 @@
+package error;
+
+public class errortest {
+	public static void main(String[] args) {
+		int[]aa=new int[3];
+		
+			aa[3]=44;
+		
+		
+	}
+}

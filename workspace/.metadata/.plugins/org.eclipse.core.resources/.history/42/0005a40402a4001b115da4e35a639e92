@@ -1,0 +1,12 @@
+package file;
+
+import java.io.FileInputStream;
+
+public class file1 {
+
+	public static void main(String[] args) {
+		FileInputStream fis = new FileInputStream("/data1.txt");
+
+	}
+
+}
